@@ -47,7 +47,11 @@ public class MainMenu extends javax.swing.JPanel {
         
         try{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
+=======
+            System.out.println(volumeOfMusic);
+>>>>>>> Stashed changes
 =======
             System.out.println(volumeOfMusic);
 >>>>>>> Stashed changes

@@ -23,6 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
@@ -39,6 +40,8 @@
                       <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
                       <Component id="BackButton" min="-2" max="-2" attributes="0"/>
 =======
+=======
+>>>>>>> Stashed changes
               <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="MuteSounds" min="-2" max="-2" attributes="0"/>
@@ -46,18 +49,27 @@
                       <Component id="jTextField1" min="-2" pref="128" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                       <Component id="MusicSlider" min="-2" max="-2" attributes="0"/>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                   </Group>
               </Group>
               <EmptySpace pref="110" max="32767" attributes="0"/>
           </Group>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="BackButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="296" max="-2" attributes="0"/>
           </Group>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </Group>
     </DimensionLayout>
@@ -72,9 +84,15 @@
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Component id="MuteSounds" min="-2" max="-2" attributes="0"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <EmptySpace pref="161" max="32767" attributes="0"/>
               <Component id="BackButton" min="-2" pref="38" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+=======
+              <EmptySpace pref="151" max="32767" attributes="0"/>
+              <Component id="BackButton" min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
 =======
               <EmptySpace pref="151" max="32767" attributes="0"/>
               <Component id="BackButton" min="-2" pref="38" max="-2" attributes="0"/>
