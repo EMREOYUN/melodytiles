@@ -46,7 +46,11 @@ public class MainMenu extends javax.swing.JPanel {
      public void setBackgroundMusic(){
         
         try{
+<<<<<<< Updated upstream
             
+=======
+            System.out.println(volumeOfMusic);
+>>>>>>> Stashed changes
             BackgrounSound = AudioSystem.getAudioInputStream(new File("tree.wav"));
             clip3 = AudioSystem.getClip();
             clip3.open(BackgrounSound);

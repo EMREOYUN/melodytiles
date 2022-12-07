@@ -29,6 +29,10 @@ public class Game extends javax.swing.JPanel {
     public Game(MainScreen mainScreen) {
         initComponents();
         this.mainScreen = mainScreen;
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
     }
    
     public void initTimer(){
@@ -93,9 +97,15 @@ public class Game extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(291, Short.MAX_VALUE)
+<<<<<<< Updated upstream
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(JTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+>>>>>>> Stashed changes
                 .addGap(287, 287, 287))
         );
         layout.setVerticalGroup(
@@ -103,9 +113,15 @@ public class Game extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(JTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(72, 72, 72))
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(74, 74, 74))
+>>>>>>> Stashed changes
         );
     }// </editor-fold>//GEN-END:initComponents
 
