@@ -120,17 +120,14 @@ public class MainMenu extends javax.swing.JPanel {
         jLabel2.setToolTipText("Eğer bilgisayarın varsa ve 25 yaşındaysan kesinlikle bu oyunu oynamalısın");
 
         Options.setText("Options");
-        Options.setToolTipText("Lütfen sürekli fareyi bu düğmenin üzeriden geçirmeyin !!!!!!");
         Options.setAlignmentY(0.0F);
         Options.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Options.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                OptionsMouseMoved(evt);
-            }
-        });
         Options.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OptionsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                OptionsMouseEntered(evt);
             }
         });
         Options.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +223,7 @@ public class MainMenu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_PlayActionPerformed
 
-    private void OptionsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsMouseMoved
+    private void OptionsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OptionsMouseMoved
         if(isOpen){
             try {
 
