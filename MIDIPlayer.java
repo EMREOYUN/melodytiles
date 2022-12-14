@@ -1,5 +1,5 @@
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.sound.midi.*;
 
@@ -21,19 +21,36 @@ public class MIDIPlayer {
             for (int i = 0; i < notes.length; i++) {
                 //Thread sleep yokken bu iki fonsiyonu klavye evente bağlayacağız
                 mChannels[0].noteOn(notes[i], 100);
+                //System.out.println("Playing note: " + notes[i]);
                 Thread.sleep(100);
                 mChannels[0].noteOff(notes[i]);
             }
+            System.exit(0);
             /*Sequencer sequencer = MidiSystem.getSequencer();
             sequencer.open();
             sequencer.setSequence(sequence);
-            sequencer.start();*/
+            System.out.println("Playing the main sequence...");
+            sequencer.start();
+            while (true) {
+                if (sequencer.isRunning()) {
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException ignore) {
+                        Thread.currentThread().interrupt();
+                        System.exit(0);
+                        break;
+                    }
+                } else {
+                    System.exit(0);
+                    break;
+                }
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public static int[] noteList(Sequence sequence) {
-        Vector<Integer> notes = new Vector<Integer>();
+        ArrayList<Integer> notes = new ArrayList<Integer>();
         for (Track track : sequence.getTracks()) {
             for (int i = 0; i < track.size(); i++) {
                 MidiEvent event = track.get(i);
