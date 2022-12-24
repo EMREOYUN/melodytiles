@@ -46,7 +46,7 @@ public class MainMenu extends javax.swing.JPanel {
      public void setBackgroundMusic(){
         
         try{
-            
+            System.out.println(volumeOfMusic);
             BackgrounSound = AudioSystem.getAudioInputStream(new File("tree.wav"));
             clip3 = AudioSystem.getClip();
             clip3.open(BackgrounSound);
@@ -120,6 +120,7 @@ public class MainMenu extends javax.swing.JPanel {
         jLabel2.setToolTipText("Eğer bilgisayarın varsa ve 25 yaşındaysan kesinlikle bu oyunu oynamalısın");
 
         Options.setText("Options");
+       // Options.setToolTipText("Lütfen sürekli fareyi bu düğmenin üzeriden geçirmeyin !!!!!!");
         Options.setAlignmentY(0.0F);
         Options.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Options.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,13 +190,13 @@ public class MainMenu extends javax.swing.JPanel {
         clip3.close();
       
         mainScreen.setContentPane(mainScreen.getGame());
-      
-        
+       
         mainScreen.invalidate();
         mainScreen.validate();
         mainScreen.getGame().initTimer();
 
-   
+
+
     }//GEN-LAST:event_PlayMouseClicked
 
     private void PlayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlayMouseEntered

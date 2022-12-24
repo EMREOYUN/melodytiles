@@ -6,6 +6,9 @@
 package com.mycompany.melodytiles2;
 
 import melodytiles2.MainScreen;
+//import melodytiles2.Renderer;
+
+import javax.swing.*;
 
 /**
  *
@@ -15,5 +18,6 @@ public class MelodyTiles2 {
 
     public static void main(String[] args) {
         MainScreen mainScreen = new MainScreen();
+
     }
 }

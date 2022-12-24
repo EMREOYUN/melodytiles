@@ -1,10 +1,21 @@
 
 package melodytiles2;
 
-public class MainScreen extends javax.swing.JFrame {
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class MainScreen extends javax.swing.JFrame implements KeyListener {
     private MainMenu mainMenu = new MainMenu(this);
     private Options op =new Options(this);
     private Game game = new Game(this) ;
+    private final Set<Integer> pressedKeys = new HashSet<>();
+    private Piano piano1 = game.getPiano1();
+    private Piano piano2 = game.getPiano2();
+    
 
     public MainMenu getMainMenu() {
         return mainMenu;
@@ -18,12 +29,17 @@ public class MainScreen extends javax.swing.JFrame {
         return game;
     }
 
+    
    
     public MainScreen() {
         initComponents();
         add(mainMenu);
+        addKeyListener(this);
+        setFocusable(true);
+        requestFocus();
         setContentPane(mainMenu);
         this.setVisible(true);
+        this.setTitle("MelodyTiles2");
     }
 
     /**
@@ -57,6 +73,33 @@ public class MainScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+    @Override
+    public synchronized void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public synchronized void keyPressed(KeyEvent e) {
+
+        pressedKeys.add(e.getKeyCode());
+        Point offset = new Point();
+        if (!pressedKeys.isEmpty()) {
+            for (Iterator<Integer> it = pressedKeys.iterator(); it.hasNext(); ) {
+                int a = it.next();
+                piano1.control(a);
+                piano2.control(a);
+
+            }
+
+        }
+
+    }
+
+    @Override
+    public synchronized void keyReleased(KeyEvent e) {
+        pressedKeys.remove(e.getKeyCode());
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
