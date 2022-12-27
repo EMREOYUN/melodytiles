@@ -13,31 +13,29 @@ public class PianoRight extends Piano{
 
     @Override
     public void control(int a) {
-        int k = getTileList().get(0).getBulunduğusütun();
-        if (k == 1){
-            if (a == KeyEvent.VK_LEFT){
-                skor++;
-                sound();
-                repaint();
-                update();
+        if (enabled) {
+            int k = getTileList().get(0).getBulunduğusütun();
+            if (k == 1){
+                if (a == KeyEvent.VK_LEFT){
+                    correct();
+                } else if (a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT) {
+                    wrong();
+                }
+            }
+            if (k == 2){
+                if (a == KeyEvent.VK_DOWN){
+                    correct();
+                } else if (a == KeyEvent.VK_LEFT || a == KeyEvent.VK_RIGHT) {
+                    wrong();
+                }
+            }
+            if (k == 3){
+                if (a == KeyEvent.VK_RIGHT){
+                    correct();
+                } else if (a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN) {
+                    wrong();
+                }
             }
         }
-        if (k == 2){
-            if (a == KeyEvent.VK_DOWN){
-                skor++;
-                sound();
-                repaint();
-                update();
-            }
-        }
-        if (k == 3){
-            if (a == KeyEvent.VK_RIGHT){
-                skor++;
-                sound();
-                repaint();
-                update();
-            }
-        }
-
     }
 }

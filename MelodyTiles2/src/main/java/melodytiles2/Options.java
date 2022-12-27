@@ -19,7 +19,7 @@ public class Options extends javax.swing.JPanel {
     }
 
   
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -86,6 +86,10 @@ public class Options extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BackButton)
                 .addGap(296, 296, 296))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BackButton)
+                .addGap(296, 296, 296))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +109,7 @@ public class Options extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+        // TODO add your handling code here:
     private void MusicSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MusicSliderStateChanged
         try {
             mainScreen.getMainMenu().ChangeVolumeMusic(MusicSlider.getValue());
@@ -126,15 +130,15 @@ public class Options extends javax.swing.JPanel {
 
     private void BackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMouseClicked
         // TODO add your handling code here:
-       if(MuteSounds.isSelected()){
-           mainScreen.getMainMenu().setIsOpen(false);
-           
-       } 
-       mainScreen.setContentPane(mainScreen.getMainMenu());
-       mainScreen.invalidate();
-       mainScreen.validate();
-       
-
+        if(MuteSounds.isSelected()){
+            mainScreen.getMainMenu().setIsOpen(false);
+        } else {
+            mainScreen.getMainMenu().setIsOpen(true);
+        }
+        mainScreen.setContentPane(mainScreen.getMainMenu());
+        mainScreen.invalidate();
+        mainScreen.validate();
+        mainScreen.getMainMenu().setBackgroundMusic();
     }//GEN-LAST:event_BackButtonMouseClicked
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed

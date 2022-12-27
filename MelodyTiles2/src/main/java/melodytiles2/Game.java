@@ -4,15 +4,9 @@
  */
 package melodytiles2;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import javax.swing.*;
 
 
@@ -23,6 +17,7 @@ import javax.swing.*;
 public class Game extends javax.swing.JPanel {
     private MainScreen mainScreen ;
     private Timer timer;
+    private Timer tick;
     private DecimalFormat dFormat ;
     private int second, minute;
     private String ddSecond, ddMinute;
@@ -36,7 +31,7 @@ public class Game extends javax.swing.JPanel {
     }
 
     //private Renderer renderer = new Renderer();
-   private  Piano piano1 =new PianoLeft();
+   private Piano piano1 = new PianoLeft();
    private Piano piano2  = new PianoRight();
    private ProgressBars pb = new ProgressBars();
 
@@ -48,7 +43,6 @@ public class Game extends javax.swing.JPanel {
 
         this.setFocusable(true);
         this.requestFocus();
-
         piano2.repaint();
         initComponents();
         this.mainScreen = mainScreen;
@@ -59,13 +53,15 @@ public class Game extends javax.swing.JPanel {
     }
    
     public void initTimer(){
-          dFormat = new DecimalFormat("00"); // see 00:00 instade of 0:0
-          JTimer.setBounds(800, 100, 200, 100); // x, y, width, height (where it's gonna stay)
-	  JTimer.setHorizontalAlignment(JLabel.CENTER); // Default is left, we want at center
+        dFormat = new DecimalFormat("00"); // see 00:00 instade of 0:0
+        JTimer.setBounds(800, 100, 200, 100); // x, y, width, height (where it's gonna stay)
+	    JTimer.setHorizontalAlignment(JLabel.CENTER); // Default is left, we want at center
           
         JTimer.setText("05:00");
         minute = 5;
         second = 0;
+        piano1.reset();
+        piano2.reset();
         timer = new Timer(1000, new ActionListener() { // 1000 -> for one(1) second
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -74,10 +70,6 @@ public class Game extends javax.swing.JPanel {
 				ddMinute = dFormat.format(minute);
 				
 				JTimer.setText(ddMinute + ":" + ddSecond);
-				Skor1Label.setText(piano1.getSkor()+"");
-                Skorlabel2.setText(piano2.getSkor()+"");
-                pb.setSkor(piano1.getSkor(),piano2.getSkor());
-                pb.repaint();
 
 				if(second == -1) { //don't want to 0
 					second = 59;
@@ -90,13 +82,35 @@ public class Game extends javax.swing.JPanel {
                     Skor1Label.setText(""+piano1.getSkor());
 				}
 				if(minute == 0 && second == 0) {
-					timer.stop();
+                    if (piano1.getSkor() > piano2.getSkor()){
+                        JOptionPane.showMessageDialog(null, "Player 1 won!");
+                    }
+                    else if (piano1.getSkor() < piano2.getSkor()){
+                        JOptionPane.showMessageDialog(null, "Player 2 won!");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Draw!");
+                    }
+                    returnMainMenu();
 				}
 			}
 		});
+        tick = new Timer(8, new ActionListener() { //125 ticks per second
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Skor1Label.setText(piano1.getSkor()+"");
+                Skorlabel2.setText(piano2.getSkor()+"");
+                pb.setSkor(piano1.getSkor(),piano2.getSkor());
+                pb.repaint();
+                if (piano1.getSkor() + piano2.getSkor() == 1000){
+                    //summonRockPaperScissors();
+                }
+            }
+        });
         timer.start();
+        tick.start();
     }
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -125,7 +139,7 @@ public class Game extends javax.swing.JPanel {
             }
         });
 
-        Skor1Label.setText("jLabel1");
+        Skor1Label.setText("0");
 
         Piona1.setPreferredSize(new java.awt.Dimension(180, 291));
 
@@ -154,7 +168,7 @@ public class Game extends javax.swing.JPanel {
             .addGap(0, 291, Short.MAX_VALUE)
         );
 
-        Skorlabel2.setText("jLabel1");
+        Skorlabel2.setText("0");
 
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 50));
 
@@ -230,15 +244,37 @@ public class Game extends javax.swing.JPanel {
     }//GEN-LAST:event_JTimerComponentAdded
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       mainScreen.setContentPane(mainScreen.getMainMenu());
-       mainScreen.invalidate();
-       mainScreen.validate();
-       timer.stop();
-       mainScreen.getMainMenu().setBackgroundMusic();
-       
-       
-       
+        returnMainMenu();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void returnMainMenu() {
+        mainScreen.invalidate();
+        mainScreen.setContentPane(mainScreen.getMainMenu());
+        mainScreen.validate();
+        timer.stop();
+        tick.stop();
+        mainScreen.getMainMenu().setBackgroundMusic();
+    }
+
+    /*private void summonRockPaperScissors() {
+        RockPaperScissors rps = new RockPaperScissors();
+        rps.setVisible(true);
+        rps.setLocationRelativeTo(null);
+        rps.setResizable(false);
+        rps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }*/
+
+    private void rockPaperScissorsResult(String p1, String p2) {
+        if (p1.equals(p2)) {
+            //tie
+        } else {
+            if ((p1.equals("Rock") && p2.equals("Paper")) || (p1.equals("Paper") && p2.equals("Scissors")) || (p1.equals("Scissors") && p2.equals("Rock"))) {
+                //p2 won
+            } else {
+                //p1 won
+            }
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,9 +2,8 @@
 package melodytiles2;
 
 import java.awt.*;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
+
 
 public class ProgressBars extends JPanel{
     private int skor1 = 0;
