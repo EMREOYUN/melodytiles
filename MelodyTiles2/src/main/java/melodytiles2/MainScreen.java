@@ -74,31 +74,23 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public synchronized void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public synchronized void keyPressed(KeyEvent e) {
-
         pressedKeys.add(e.getKeyCode());
-        //Point offset = new Point();
         if (!pressedKeys.isEmpty()) {
             for (Iterator<Integer> it = pressedKeys.iterator(); it.hasNext(); ) {
                 int a = it.next();
                 if (a == KeyEvent.VK_A || a == KeyEvent.VK_S || a == KeyEvent.VK_D) piano1.control(a);
                 else if (a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT) piano2.control(a);
-                
-
             }
-
         }
-
+        pressedKeys.remove(e.getKeyCode());
     }
 
     @Override
     public synchronized void keyReleased(KeyEvent e) {
-        pressedKeys.remove(e.getKeyCode());
-
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
