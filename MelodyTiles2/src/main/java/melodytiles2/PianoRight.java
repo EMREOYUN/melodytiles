@@ -41,13 +41,13 @@ public class PianoRight extends Piano{
     @Override
     protected void rpscontrol(int a){
         switch (a) {
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 selection = 1;
                 break;
-            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
                 selection = 2;
                 break;
-            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 selection = 3;
                 break;
             default:

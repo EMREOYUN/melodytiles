@@ -31,6 +31,9 @@ public class Game extends javax.swing.JPanel {
     private ImageIcon Paper;
     private ImageIcon Scissor;
 
+
+
+
     public Piano getPiano1() {
         return piano1;
     }
@@ -123,7 +126,7 @@ public class Game extends javax.swing.JPanel {
                     piano1.enabled = false;
                     piano2.enabled = false;
                     JTimer.setText("<html>Rock<br>Paper<br>Scissors</html>");
-                    waitForSelection();
+
                 }
             }
         });
@@ -131,12 +134,18 @@ public class Game extends javax.swing.JPanel {
         tick.start();
     }
 
-    private void waitForSelection(){
+
+    public void resultoSelection() {
+
         if (piano1.selection == 0 || piano2.selection == 0){
+
+
+
         }
         else if (rockPaperScissorsResult(piano1.selection, piano2.selection) == 0){
             piano1.selection = 0;
             piano2.selection = 0;
+
         } else {
             piano1.selection = 0;
             piano2.selection = 0;
@@ -145,7 +154,13 @@ public class Game extends javax.swing.JPanel {
             piano1.enabled = true;
             piano2.enabled = true;
         }
+
     }
+
+
+
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

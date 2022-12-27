@@ -86,14 +86,29 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 if ((piano1.enabled)&&(a == KeyEvent.VK_A || a == KeyEvent.VK_S || a == KeyEvent.VK_D)){
                     piano1.control(a);
                 } 
-                else if (!(piano1.enabled)&&(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT)) {
+                else if (!(piano1.enabled)&&(a == KeyEvent.VK_A || a == KeyEvent.VK_S || a == KeyEvent.VK_D)) {
                     piano1.rpscontrol(a);
+                   // System.out.println(piano1.selection +" "+piano2.selection);
+
+                    if(piano1.selection !=0 && piano2.selection !=0){
+                        game.resultoSelection();
+                    }
+
+
                 }
                 else if ((piano2.enabled)&&(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT)){
                     piano2.control(a);
+
+
                 } 
                 else if (!(piano2.enabled)&&(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT)) {
                     piano2.rpscontrol(a);
+                 //   System.out.println(piano1.selection +" "+piano2.selection);
+
+                   if(piano1.selection !=0 && piano2.selection !=0){
+                       game.resultoSelection();
+                   }
+
                 } 
             }
         }
@@ -102,6 +117,7 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public synchronized void keyReleased(KeyEvent e) {
+        //pressedKeys.remove(e.getKeyCode());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
