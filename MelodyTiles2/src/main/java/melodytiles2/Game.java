@@ -29,7 +29,7 @@ public class Game extends javax.swing.JPanel {
     private String ddSecond, ddMinute;
     private ImageIcon Rock;
     private ImageIcon Paper;
-   private ImageIcon Scissor;
+    private ImageIcon Scissor;
 
     public Piano getPiano1() {
         return piano1;
@@ -43,13 +43,10 @@ public class Game extends javax.swing.JPanel {
    private  Piano piano1 =new PianoLeft();
    private Piano piano2  = new PianoRight();
    private ProgressBars pb = new ProgressBars();
-
-
-    
     
     
     public Game(MainScreen mainScreen) {
-       setBackground(Color.WHITE);
+        setBackground(Color.WHITE);
         this.setFocusable(true);
         this.requestFocus();
         Image reScaledIMage1 = new ImageIcon("Rock.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
@@ -61,11 +58,6 @@ public class Game extends javax.swing.JPanel {
         piano2.repaint();
         initComponents();
         this.mainScreen = mainScreen;
-
-
-
-
-        
     }
    
     public void initTimer(){
@@ -78,6 +70,8 @@ public class Game extends javax.swing.JPanel {
         second = 0;
         piano1.reset();
         piano2.reset();
+        piano1.enabled = true;
+        piano2.enabled = true;
         timer = new Timer(1000, new ActionListener() { // 1000 -> for one(1) second
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -122,13 +116,35 @@ public class Game extends javax.swing.JPanel {
                 Skorlabel2.setText(piano2.getSkor()+"");
                 pb.setSkor(piano1.getSkor(),piano2.getSkor());
                 pb.repaint();
-                if (piano1.getSkor() + piano2.getSkor() == 1000){
-                    //summonRockPaperScissors();
+                if (piano1.getSkor() + piano2.getSkor() == 10){
+                    String timertext = JTimer.getText();
+                    timer.stop();
+                    //tick.stop();
+                    piano1.enabled = false;
+                    piano2.enabled = false;
+                    JTimer.setText("<html>Rock<br>Paper<br>Scissors</html>");
+                    waitForSelection();
                 }
             }
         });
         timer.start();
         tick.start();
+    }
+
+    private void waitForSelection(){
+        if (piano1.selection == 0 || piano2.selection == 0){
+        }
+        else if (rockPaperScissorsResult(piano1.selection, piano2.selection) == 0){
+            piano1.selection = 0;
+            piano2.selection = 0;
+        } else {
+            piano1.selection = 0;
+            piano2.selection = 0;
+            timer.start();
+            //tick.start();
+            piano1.enabled = true;
+            piano2.enabled = true;
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -395,22 +411,16 @@ public class Game extends javax.swing.JPanel {
         mainScreen.getMainMenu().setBackgroundMusic();
     }
 
-    /*private void summonRockPaperScissors() {
-        RockPaperScissors rps = new RockPaperScissors();
-        rps.setVisible(true);
-        rps.setLocationRelativeTo(null);
-        rps.setResizable(false);
-        rps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }*/
-
-    private void rockPaperScissorsResult(String p1, String p2) {
-        if (p1.equals(p2)) {
-            //tie
+    private int rockPaperScissorsResult(int p1, int p2) {
+        if (p1 == p2) {
+            return 0;
         } else {
-            if ((p1.equals("Rock") && p2.equals("Paper")) || (p1.equals("Paper") && p2.equals("Scissors")) || (p1.equals("Scissors") && p2.equals("Rock"))) {
-                //p2 won
+            if ((p1 == 1 && p2 == 2) || (p1 == 2 && p2 == 3) || (p1 == 3 && p2 == 1)) {
+                piano1.skor = 0;
+                return 1;
             } else {
-                //p1 won
+                piano2.skor = 0;
+                return 1;
             }
         }
     }

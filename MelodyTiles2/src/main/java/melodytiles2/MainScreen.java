@@ -32,7 +32,6 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     
    
     public MainScreen() {
-
         initComponents();
         add(mainMenu);
         addKeyListener(this);
@@ -84,8 +83,18 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         if (!pressedKeys.isEmpty()) {
             for (Iterator<Integer> it = pressedKeys.iterator(); it.hasNext(); ) {
                 int a = it.next();
-                if (a == KeyEvent.VK_A || a == KeyEvent.VK_S || a == KeyEvent.VK_D) piano1.control(a);
-                else if (a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT) piano2.control(a);
+                if ((piano1.enabled)&&(a == KeyEvent.VK_A || a == KeyEvent.VK_S || a == KeyEvent.VK_D)){
+                    piano1.control(a);
+                } 
+                else if (!(piano1.enabled)&&(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT)) {
+                    piano1.rpscontrol(a);
+                }
+                else if ((piano2.enabled)&&(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT)){
+                    piano2.control(a);
+                } 
+                else if (!(piano2.enabled)&&(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_DOWN || a == KeyEvent.VK_RIGHT)) {
+                    piano2.rpscontrol(a);
+                } 
             }
         }
         pressedKeys.remove(e.getKeyCode());

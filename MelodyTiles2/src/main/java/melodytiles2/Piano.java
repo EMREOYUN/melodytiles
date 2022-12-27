@@ -17,6 +17,7 @@ public abstract class Piano extends JPanel {
     protected int skor ;
     protected MidiChannel[] mChannels;
     protected int[] notes;
+    protected int selection = 0;
 
     public abstract void control(int a);
     public void sound(){
@@ -138,4 +139,5 @@ public abstract class Piano extends JPanel {
         repaint();
         update();
     }
+    protected abstract void rpscontrol(int a);
 }

@@ -34,4 +34,20 @@ public class PianoLeft extends Piano{
             }
         }
     }
+    @Override
+    protected void rpscontrol(int a){
+        switch (a) {
+            case KeyEvent.VK_A:
+                selection = 1;
+                break;
+            case KeyEvent.VK_S:
+                selection = 2;
+                break;
+            case KeyEvent.VK_D:
+                selection = 3;
+                break;
+            default:
+                break;
+        }
+    }
 }
