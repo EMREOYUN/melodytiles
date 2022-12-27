@@ -116,8 +116,7 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setIcon(MenuIcon
-        );
+        jLabel2.setIcon(MenuIcon);
         jLabel2.setToolTipText("Eğer bilgisayarın varsa ve 25 yaşındaysan kesinlikle bu oyunu oynamalısın");
 
         Options.setText("Options");

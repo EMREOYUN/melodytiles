@@ -4,9 +4,15 @@
  */
 package melodytiles2;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import javax.swing.*;
 
 
@@ -21,6 +27,9 @@ public class Game extends javax.swing.JPanel {
     private DecimalFormat dFormat ;
     private int second, minute;
     private String ddSecond, ddMinute;
+    private ImageIcon Rock;
+    private ImageIcon Paper;
+   private ImageIcon Scissor;
 
     public Piano getPiano1() {
         return piano1;
@@ -31,7 +40,7 @@ public class Game extends javax.swing.JPanel {
     }
 
     //private Renderer renderer = new Renderer();
-   private Piano piano1 = new PianoLeft();
+   private  Piano piano1 =new PianoLeft();
    private Piano piano2  = new PianoRight();
    private ProgressBars pb = new ProgressBars();
 
@@ -40,12 +49,19 @@ public class Game extends javax.swing.JPanel {
     
     
     public Game(MainScreen mainScreen) {
-
+       setBackground(Color.WHITE);
         this.setFocusable(true);
         this.requestFocus();
+        Image reScaledIMage1 = new ImageIcon("Rock.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+        Rock = new ImageIcon(reScaledIMage1);
+        Image reScaledIMage2 = new ImageIcon("paper.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+        Paper = new ImageIcon(reScaledIMage2);
+        Image reScaledIMage3 = new ImageIcon("scissor.png").getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+        Scissor = new ImageIcon(reScaledIMage3);
         piano2.repaint();
         initComponents();
         this.mainScreen = mainScreen;
+
 
 
 
@@ -53,9 +69,9 @@ public class Game extends javax.swing.JPanel {
     }
    
     public void initTimer(){
-        dFormat = new DecimalFormat("00"); // see 00:00 instade of 0:0
-        JTimer.setBounds(800, 100, 200, 100); // x, y, width, height (where it's gonna stay)
-	    JTimer.setHorizontalAlignment(JLabel.CENTER); // Default is left, we want at center
+          dFormat = new DecimalFormat("00"); // see 00:00 instade of 0:0
+          JTimer.setBounds(800, 100, 200, 100); // x, y, width, height (where it's gonna stay)
+	  JTimer.setHorizontalAlignment(JLabel.CENTER); // Default is left, we want at center
           
         JTimer.setText("05:00");
         minute = 5;
@@ -70,6 +86,10 @@ public class Game extends javax.swing.JPanel {
 				ddMinute = dFormat.format(minute);
 				
 				JTimer.setText(ddMinute + ":" + ddSecond);
+				Skor1Label.setText(piano1.getSkor()+"");
+                Skorlabel2.setText(piano2.getSkor()+"");
+                pb.setSkor(piano1.getSkor(),piano2.getSkor());
+                pb.repaint();
 
 				if(second == -1) { //don't want to 0
 					second = 59;
@@ -110,17 +130,29 @@ public class Game extends javax.swing.JPanel {
         timer.start();
         tick.start();
     }
-    //@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JTimer = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        Skor1Label = new javax.swing.JLabel();
         Piona1 = piano1;
         Piano2 = piano2;
-        Skorlabel2 = new javax.swing.JLabel();
         jPanel1 = pb;
+        JTimer = new javax.swing.JLabel();
+        Skorlabel2 = new javax.swing.JLabel();
+        Skor1Label = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        Rock1 = new javax.swing.JLabel();
+        Paper1 = new javax.swing.JLabel();
+        Scissor1 = new javax.swing.JLabel();
+        Rock2 = new javax.swing.JLabel();
+        Paper2 = new javax.swing.JLabel();
+        Scissor2 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(665, 479));
 
@@ -138,10 +170,9 @@ public class Game extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
         Skor1Label.setText("0");
-
         Piona1.setPreferredSize(new java.awt.Dimension(180, 291));
+
 
         javax.swing.GroupLayout Piona1Layout = new javax.swing.GroupLayout(Piona1);
         Piona1.setLayout(Piona1Layout);
@@ -167,9 +198,7 @@ public class Game extends javax.swing.JPanel {
             Piano2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 291, Short.MAX_VALUE)
         );
-
         Skorlabel2.setText("0");
-
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -183,59 +212,170 @@ public class Game extends javax.swing.JPanel {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
+        JTimer.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        JTimer.setText("jLabel1");
+        JTimer.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                JTimerComponentAdded(evt);
+            }
+        });
+
+        Skorlabel2.setText("jLabel1");
+
+        Skor1Label.setText("jLabel1");
+
+        jLabel1.setText("A");
+
+        jLabel2.setText("S");
+
+        jLabel3.setText("D");
+
+        jLabel4.setText("◀");
+
+        jLabel5.setText("▼");
+
+        jLabel6.setText("▶");
+
+        Rock1.setIcon(Rock);
+        //Rock1.setText("jLabel7");
+
+        Paper1.setIcon(Paper);
+        //Paper1.setText("jLabel7");
+
+        Scissor1.setIcon(Scissor);
+        //Scissor1.setText("jLabel7");
+
+        Rock2.setIcon(Rock);
+        //Rock2.setText("jLabel7");
+
+        Paper2.setIcon(Paper);
+        //Paper2.setText("jLabel7");
+
+        Scissor2.setIcon(Scissor);
+        //Scissor2.setText("jLabel7");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(87, 87, 87)
                 .addComponent(Skor1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143)
+                .addGap(92, 92, 92)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Skorlabel2)
+                .addGap(84, 84, 84))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1)
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel2)
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                        .addComponent(Skorlabel2)
-                        .addGap(125, 125, 125))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Piano2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(52, 52, 52)
-                    .addComponent(Piona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(433, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(Rock1)
+                                .addGap(37, 37, 37)
+                                .addComponent(Paper1)
+                                .addGap(40, 40, 40)
+                                .addComponent(Scissor1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Piona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(JTimer))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(jButton1)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Piano2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(jLabel4)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Rock2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(Paper2)))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(Scissor2)))))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(Skor1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Skorlabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Piano2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(73, 73, 73))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(128, Short.MAX_VALUE)
-                    .addComponent(Piona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(92, 92, 92)))
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Skor1Label)
+                                .addGap(8, 8, 8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Skorlabel2)
+                                .addGap(11, 11, 11)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(Piona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(JTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 11, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(49, 49, 49))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(Scissor1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                    .addComponent(Paper1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Rock1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(Piano2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Scissor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Rock2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(Paper2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -246,7 +386,6 @@ public class Game extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         returnMainMenu();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     private void returnMainMenu() {
         mainScreen.invalidate();
         mainScreen.setContentPane(mainScreen.getMainMenu());
@@ -276,14 +415,25 @@ public class Game extends javax.swing.JPanel {
         }
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JTimer;
+    private javax.swing.JLabel Paper1;
+    private javax.swing.JLabel Paper2;
     private javax.swing.JPanel Piano2;
     private javax.swing.JPanel Piona1;
+    private javax.swing.JLabel Rock1;
+    private javax.swing.JLabel Rock2;
+    private javax.swing.JLabel Scissor1;
+    private javax.swing.JLabel Scissor2;
     private javax.swing.JLabel Skor1Label;
     private javax.swing.JLabel Skorlabel2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
