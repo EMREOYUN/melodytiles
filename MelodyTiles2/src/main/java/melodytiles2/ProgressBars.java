@@ -21,9 +21,9 @@ public class ProgressBars extends JPanel{
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.RED);
-        g.fillRect(0,0,skor1/5,50);
+        g.fillRect(0,0,skor1,50);
         g.setColor(Color.BLUE);
-        g.fillRect(200-skor2/5,0,skor2/5,50);
+        g.fillRect(200-skor2,0,skor2,50);
 
     }
 }

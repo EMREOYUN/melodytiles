@@ -10,8 +10,8 @@ public abstract class Piano extends JPanel {
     protected int index = 0;
     private final int width = 180;
     private final int height = 291;
-    private final static int sütun = 3;
-    private final static int satır = 3;
+    private final static int column = 3;
+    private final static int row = 3;
     private ArrayList<Tile> TileList;
     protected Boolean enabled = true;
     protected int skor ;
@@ -89,40 +89,40 @@ public abstract class Piano extends JPanel {
         g.setColor(Color.BLACK);
         for(Tile t : TileList){
             if(t.getBulunduğusatır() ==1 && t.getBulunduğusütun()==1){
-                g.drawRect(0, this.height-(height/satır), width/sütun, height/satır);
-                g.fillRect(0,this.height-(height/satır) , width/sütun, height/satır);
+                g.drawRect(0, this.height-(height/row), width/column, height/row);
+                g.fillRect(0,this.height-(height/row) , width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==1 && t.getBulunduğusütun()==2){
-                g.drawRect(width/sütun, this.height-(height/satır), width/sütun, height/satır);
-                g.fillRect(width/sütun, this.height-(height/satır), width/sütun, height/satır);
+                g.drawRect(width/column, this.height-(height/row), width/column, height/row);
+                g.fillRect(width/column, this.height-(height/row), width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==1 && t.getBulunduğusütun()==3){
-                g.drawRect(2*width/sütun, this.height-(height/satır), width/sütun, height/satır);
-                g.fillRect(2*width/sütun, this.height-(height/satır), width/sütun, height/satır);
+                g.drawRect(2*width/column, this.height-(height/row), width/column, height/row);
+                g.fillRect(2*width/column, this.height-(height/row), width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==2 && t.getBulunduğusütun()==1){
-                g.drawRect(0, (height/satır), width/sütun, height/satır);
-                g.fillRect(0, (height/satır), width/sütun, height/satır);
+                g.drawRect(0, (height/row), width/column, height/row);
+                g.fillRect(0, (height/row), width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==2 && t.getBulunduğusütun()==2){
-                g.drawRect(width/sütun, (height/satır), width/sütun, height/satır);
-                g.fillRect(width/sütun, (height/satır), width/sütun, height/satır);
+                g.drawRect(width/column, (height/row), width/column, height/row);
+                g.fillRect(width/column, (height/row), width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==2 && t.getBulunduğusütun()==3){
-                g.drawRect(2*width/sütun, (height/satır), width/sütun, height/satır);
-                g.fillRect(2*width/sütun, (height/satır), width/sütun, height/satır);
+                g.drawRect(2*width/column, (height/row), width/column, height/row);
+                g.fillRect(2*width/column, (height/row), width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==3 && t.getBulunduğusütun()==1){
-                g.drawRect(0, 0, width/sütun, height/satır);
-                g.fillRect(0, 0, width/sütun, height/satır);
+                g.drawRect(0, 0, width/column, height/row);
+                g.fillRect(0, 0, width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==3 && t.getBulunduğusütun()==2){
-                g.drawRect(width/sütun, 0, width/sütun, height/satır);
-                g.fillRect(width/sütun, 0, width/sütun, height/satır);
+                g.drawRect(width/column, 0, width/column, height/row);
+                g.fillRect(width/column, 0, width/column, height/row);
             }
             else if(t.getBulunduğusatır() ==3 && t.getBulunduğusütun()==3){
-                g.drawRect(2*width/sütun, 0, width/sütun, height/satır);
-                g.fillRect(2*width/sütun, 0, width/sütun, height/satır);
+                g.drawRect(2*width/column, 0, width/column, height/row);
+                g.fillRect(2*width/column, 0, width/column, height/row);
             }
         }
     }

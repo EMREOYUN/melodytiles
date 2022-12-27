@@ -14,6 +14,6 @@ import melodytiles2.MainScreen;
 public class MelodyTiles2 {
 
     public static void main(String[] args) {
-        MainScreen mainScreen = new MainScreen();
+        new MainScreen();
     }
 }

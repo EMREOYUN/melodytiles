@@ -7,12 +7,7 @@ package melodytiles2;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import javax.swing.*;
 
 
@@ -119,14 +114,25 @@ public class Game extends javax.swing.JPanel {
                 Skorlabel2.setText(piano2.getSkor()+"");
                 pb.setSkor(piano1.getSkor(),piano2.getSkor());
                 pb.repaint();
-                if (piano1.getSkor() + piano2.getSkor() == 10){
-                    String timertext = JTimer.getText();
-                    timer.stop();
-                    //tick.stop();
-                    piano1.enabled = false;
-                    piano2.enabled = false;
-                    JTimer.setText("<html>Rock<br>Paper<br>Scissors</html>");
-
+                if (piano1.getSkor() + piano2.getSkor() == 200){
+                    if (piano1.getSkor() == 200){
+                        timer.stop();
+                        JOptionPane.showMessageDialog(null, "Player 1 won!");
+                        returnMainMenu();
+                    }
+                    else if (piano2.getSkor() == 200){
+                        timer.stop();
+                        JOptionPane.showMessageDialog(null, "Player 2 won!");
+                        returnMainMenu();
+                    }
+                    else{
+                        timer.stop();
+                        piano1.enabled = false;
+                        piano2.enabled = false;
+                        if (!(JTimer.getText().equals("<html>Draw</html>"))){
+                            JTimer.setText("<html>Rock<br>Paper<br>Scissors</html>");
+                        }
+                    }
                 }
             }
         });
@@ -138,19 +144,22 @@ public class Game extends javax.swing.JPanel {
     public void resultoSelection() {
 
         if (piano1.selection == 0 || piano2.selection == 0){
-
-
-
         }
         else if (rockPaperScissorsResult(piano1.selection, piano2.selection) == 0){
             piano1.selection = 0;
             piano2.selection = 0;
+            JTimer.setText("<html>Draw</html>");
 
         } else {
+            if (rockPaperScissorsResult(piano1.selection, piano2.selection) == 1){
+                JTimer.setText("<html>Player 1<br>Won</html>");
+            }
+            else if (rockPaperScissorsResult(piano1.selection, piano2.selection) == 2){
+                JTimer.setText("<html>Player 2<br>Won</html>");
+            }
             piano1.selection = 0;
             piano2.selection = 0;
             timer.start();
-            //tick.start();
             piano1.enabled = true;
             piano2.enabled = true;
         }
@@ -161,7 +170,7 @@ public class Game extends javax.swing.JPanel {
 
 
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -432,7 +441,7 @@ public class Game extends javax.swing.JPanel {
         } else {
             if ((p1 == 1 && p2 == 2) || (p1 == 2 && p2 == 3) || (p1 == 3 && p2 == 1)) {
                 piano1.skor = 0;
-                return 1;
+                return 2;
             } else {
                 piano2.skor = 0;
                 return 1;
