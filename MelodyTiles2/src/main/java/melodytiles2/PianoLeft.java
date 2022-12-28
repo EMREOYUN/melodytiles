@@ -7,10 +7,11 @@ public class PianoLeft extends Piano{
         super();
     }
 
+    //Klavyeden piano kontrolü
     @Override
     public void control(int a) {
         if (enabled) {
-            int k = getTileList().get(0).getBulunduğusütun();
+            int k = getTileList().get(0).getColumn();
             if (k == 1){
                 if (a == KeyEvent.VK_A){
                     correct();
@@ -34,6 +35,8 @@ public class PianoLeft extends Piano{
             }
         }
     }
+    
+    //Taş Kağıt Makas kontrolü
     @Override
     protected void rpscontrol(int a){
         switch (a) {

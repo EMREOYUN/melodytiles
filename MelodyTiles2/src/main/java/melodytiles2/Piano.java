@@ -19,7 +19,10 @@ public abstract class Piano extends JPanel {
     protected int[] notes;
     protected int selection = 0;
 
+    //Taş Kağıt Makas kontrolü
     public abstract void control(int a);
+
+    //MIDI üzerinden ses modülü
     public void sound(){
         try {
             mChannels[0].noteOn(notes[index], 100);
@@ -32,9 +35,9 @@ public abstract class Piano extends JPanel {
         }
     }
 
+    //Tile listesi
     public ArrayList<Tile> getTileList(){
         return TileList;
-
     }
 
     public Piano(){
@@ -43,6 +46,7 @@ public abstract class Piano extends JPanel {
         start();
         repaint();
         try {
+            //MIDI dosyasını içeri alır ve notaları alır
             Sequence sequence = MidiSystem.getSequence(new File("clean-bad-apple.mid"));
             notes = MIDIHelper.noteList(sequence);
             Synthesizer midiSynth = MidiSystem.getSynthesizer();
@@ -54,12 +58,12 @@ public abstract class Piano extends JPanel {
         catch (Exception e){
             e.printStackTrace();
         }
-        //setFocusable(true);
-        //requestFocus();
     }
+
     public int getSkor() {
         return skor;
     }
+
     public void reset(){
         TileList.clear();
         Tile.a = 1;
@@ -67,71 +71,80 @@ public abstract class Piano extends JPanel {
         skor = 0;
         index = 0;
     }
+
+    //Devre dışı bırakma sistemi
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+    
+    //Piano ekran güncelleme
     protected void update(){
         for(Tile t : TileList){
-            t.setBulunduğusatır(t.getBulunduğusatır()-1);
+            t.setRow(t.getRow()-1);
         }
         TileList.remove(0);
         Tile.a = 3;
         TileList.add(new Tile());
     }
+
+    //Piano başlangıç
     private void start(){
         TileList.add(new Tile());
         TileList.add(new Tile());
         TileList.add(new Tile());
     }
 
+    //Piano çizdirme
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.BLACK);
         for(Tile t : TileList){
-            if(t.getBulunduğusatır() ==1 && t.getBulunduğusütun()==1){
+            if(t.getRow() ==1 && t.getColumn()==1){
                 g.drawRect(0, this.height-(height/row), width/column, height/row);
                 g.fillRect(0,this.height-(height/row) , width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==1 && t.getBulunduğusütun()==2){
+            else if(t.getRow() ==1 && t.getColumn()==2){
                 g.drawRect(width/column, this.height-(height/row), width/column, height/row);
                 g.fillRect(width/column, this.height-(height/row), width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==1 && t.getBulunduğusütun()==3){
+            else if(t.getRow() ==1 && t.getColumn()==3){
                 g.drawRect(2*width/column, this.height-(height/row), width/column, height/row);
                 g.fillRect(2*width/column, this.height-(height/row), width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==2 && t.getBulunduğusütun()==1){
+            else if(t.getRow() ==2 && t.getColumn()==1){
                 g.drawRect(0, (height/row), width/column, height/row);
                 g.fillRect(0, (height/row), width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==2 && t.getBulunduğusütun()==2){
+            else if(t.getRow() ==2 && t.getColumn()==2){
                 g.drawRect(width/column, (height/row), width/column, height/row);
                 g.fillRect(width/column, (height/row), width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==2 && t.getBulunduğusütun()==3){
+            else if(t.getRow() ==2 && t.getColumn()==3){
                 g.drawRect(2*width/column, (height/row), width/column, height/row);
                 g.fillRect(2*width/column, (height/row), width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==3 && t.getBulunduğusütun()==1){
+            else if(t.getRow() ==3 && t.getColumn()==1){
                 g.drawRect(0, 0, width/column, height/row);
                 g.fillRect(0, 0, width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==3 && t.getBulunduğusütun()==2){
+            else if(t.getRow() ==3 && t.getColumn()==2){
                 g.drawRect(width/column, 0, width/column, height/row);
                 g.fillRect(width/column, 0, width/column, height/row);
             }
-            else if(t.getBulunduğusatır() ==3 && t.getBulunduğusütun()==3){
+            else if(t.getRow() ==3 && t.getColumn()==3){
                 g.drawRect(2*width/column, 0, width/column, height/row);
                 g.fillRect(2*width/column, 0, width/column, height/row);
             }
         }
     }
+
     protected void correct(){
         skor++;
         sound();
         repaint();
         update();
     }
+
     protected void wrong(){
         if (skor > 0) {
             skor--;
@@ -139,5 +152,6 @@ public abstract class Piano extends JPanel {
         repaint();
         update();
     }
+    
     protected abstract void rpscontrol(int a);
 }

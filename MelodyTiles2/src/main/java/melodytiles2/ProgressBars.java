@@ -7,17 +7,18 @@ import javax.swing.JPanel;
 
 public class ProgressBars extends JPanel{
     private int skor1 = 0;
-    private int skor2=0;
+    private int skor2 = 0;
 
     public ProgressBars(){
-
     }
+    
+
     public void setSkor(int skor1 ,int skor2){
-        this.skor2 = skor2;
         this.skor1 = skor1;
-
+        this.skor2 = skor2;
     }
 
+    //Progress barları boyar
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.RED);

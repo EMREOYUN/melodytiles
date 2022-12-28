@@ -6,15 +6,17 @@ public class PianoRight extends Piano{
     int index = 0;
     public PianoRight() {
         super();
+        //Randomluk katması için
         update();
         update();
         update();
     }
 
+    //Klavyeden piano kontrolü
     @Override
     public void control(int a) {
         if (enabled) {
-            int k = getTileList().get(0).getBulunduğusütun();
+            int k = getTileList().get(0).getColumn();
             if (k == 1){
                 if (a == KeyEvent.VK_LEFT){
                     correct();
@@ -38,6 +40,8 @@ public class PianoRight extends Piano{
             }
         }
     }
+    
+    //Taş Kağıt Makas kontrolü
     @Override
     protected void rpscontrol(int a){
         switch (a) {

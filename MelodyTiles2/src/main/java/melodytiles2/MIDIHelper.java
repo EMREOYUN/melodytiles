@@ -1,11 +1,10 @@
 package melodytiles2;
 
 import java.util.ArrayList;
-
 import javax.sound.midi.*;
 
-
 public class MIDIHelper {
+    //MIDI dosyasından notaları alır
     public static int[] noteList(Sequence sequence) {
         ArrayList<Integer> notes = new ArrayList<Integer>();
         for (Track track : sequence.getTracks()) {

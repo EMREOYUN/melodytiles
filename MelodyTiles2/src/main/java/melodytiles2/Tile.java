@@ -3,27 +3,26 @@ package melodytiles2;
 import java.util.Random;
 
 public class Tile {
-    private int bulunduğusütun;
-    private int bulunduğusatır;
+    private int column; //sütün
+    private int row; // satır
     public static int a = 1;
 
     public Tile() {
         Random random = new Random();
-        bulunduğusütun = random.nextInt(3) + 1;
-        bulunduğusatır = a;
+        column = random.nextInt(3) + 1;
+        row = a;
         a++;
     }
 
-    public int getBulunduğusatır() {
-        return bulunduğusatır;
+    public int getRow() {
+        return row;
     }
 
-    public void setBulunduğusatır(int bulunduğusatır) {
-        this.bulunduğusatır = bulunduğusatır;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-
-    public int getBulunduğusütun() {
-        return bulunduğusütun;
+    public int getColumn() {
+        return column;
     }
 }

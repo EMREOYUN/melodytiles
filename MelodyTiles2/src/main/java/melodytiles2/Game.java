@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package melodytiles2;
 
 import java.awt.*;
@@ -10,11 +6,6 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import javax.swing.*;
 
-
-/**
- *
- * @author Ahmet Engin
- */
 public class Game extends javax.swing.JPanel {
     private MainScreen mainScreen ;
     private Timer timer;
@@ -25,9 +16,9 @@ public class Game extends javax.swing.JPanel {
     private ImageIcon Rock;
     private ImageIcon Paper;
     private ImageIcon Scissor;
-
-
-
+    private Piano piano1 = new PianoLeft();
+    private Piano piano2 = new PianoRight();
+    private ProgressBars pb = new ProgressBars();
 
     public Piano getPiano1() {
         return piano1;
@@ -37,12 +28,6 @@ public class Game extends javax.swing.JPanel {
         return piano2;
     }
 
-    //private Renderer renderer = new Renderer();
-   private  Piano piano1 =new PianoLeft();
-   private Piano piano2  = new PianoRight();
-   private ProgressBars pb = new ProgressBars();
-    
-    
     public Game(MainScreen mainScreen) {
         setBackground(Color.WHITE);
         this.setFocusable(true);
@@ -57,12 +42,12 @@ public class Game extends javax.swing.JPanel {
         initComponents();
         this.mainScreen = mainScreen;
     }
-   
+    
+    //Sayacı başlatır
     public void initTimer(){
-          dFormat = new DecimalFormat("00"); // see 00:00 instade of 0:0
-          JTimer.setBounds(800, 100, 200, 100); // x, y, width, height (where it's gonna stay)
-	  JTimer.setHorizontalAlignment(JLabel.CENTER); // Default is left, we want at center
-          
+        dFormat = new DecimalFormat("00"); // see 00:00 instade of 0:0
+        JTimer.setBounds(800, 100, 200, 100); // x, y, width, height (where it's gonna stay)
+        JTimer.setHorizontalAlignment(JLabel.CENTER); // Default is left, we want at center
         JTimer.setText("05:00");
         minute = 5;
         second = 0;
@@ -70,26 +55,24 @@ public class Game extends javax.swing.JPanel {
         piano2.reset();
         piano1.enabled = true;
         piano2.enabled = true;
+
+        //Sayaç
         timer = new Timer(1000, new ActionListener() { // 1000 -> for one(1) second
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				second--;
 				ddSecond = dFormat.format(second);
 				ddMinute = dFormat.format(minute);
-				
 				JTimer.setText(ddMinute + ":" + ddSecond);
 				Skor1Label.setText(piano1.getSkor()+"");
                 Skorlabel2.setText(piano2.getSkor()+"");
                 pb.setSkor(piano1.getSkor(),piano2.getSkor());
                 pb.repaint();
-
 				if(second == -1) { //don't want to 0
 					second = 59;
 					minute--;
-					
 					ddSecond = dFormat.format(second);
-					ddMinute = dFormat.format(minute);
-											
+					ddMinute = dFormat.format(minute);			
 					JTimer.setText(ddMinute + ":" + ddSecond);
                     Skor1Label.setText(""+piano1.getSkor());
 				}
@@ -107,6 +90,8 @@ public class Game extends javax.swing.JPanel {
 				}
 			}
 		});
+
+        //Tick sistemi
         tick = new Timer(8, new ActionListener() { //125 ticks per second
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,9 +125,8 @@ public class Game extends javax.swing.JPanel {
         tick.start();
     }
 
-
+    // Sonuç gösterir
     public void resultoSelection() {
-
         if (piano1.selection == 0 || piano2.selection == 0){
         }
         else if (rockPaperScissorsResult(piano1.selection, piano2.selection) == 0){
@@ -163,17 +147,10 @@ public class Game extends javax.swing.JPanel {
             piano1.enabled = true;
             piano2.enabled = true;
         }
-
     }
 
-
-
-
-
-    //@SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    //Componentleri dizer
     private void initComponents() {
-
         jButton1 = new javax.swing.JButton();
         Piona1 = piano1;
         Piano2 = piano2;
@@ -213,7 +190,6 @@ public class Game extends javax.swing.JPanel {
         Skor1Label.setText("0");
         Piona1.setPreferredSize(new java.awt.Dimension(180, 291));
 
-
         javax.swing.GroupLayout Piona1Layout = new javax.swing.GroupLayout(Piona1);
         Piona1.setLayout(Piona1Layout);
         Piona1Layout.setHorizontalGroup(
@@ -226,7 +202,6 @@ public class Game extends javax.swing.JPanel {
         );
 
         Piano2.setPreferredSize(new java.awt.Dimension(180, 291));
-
 
         javax.swing.GroupLayout Piano2Layout = new javax.swing.GroupLayout(Piano2);
         Piano2.setLayout(Piano2Layout);
@@ -277,22 +252,16 @@ public class Game extends javax.swing.JPanel {
         jLabel6.setText("▶");
 
         Rock1.setIcon(Rock);
-        //Rock1.setText("jLabel7");
 
         Paper1.setIcon(Paper);
-        //Paper1.setText("jLabel7");
 
         Scissor1.setIcon(Scissor);
-        //Scissor1.setText("jLabel7");
 
         Rock2.setIcon(Rock);
-        //Rock2.setText("jLabel7");
 
         Paper2.setIcon(Paper);
-        //Paper2.setText("jLabel7");
 
         Scissor2.setIcon(Scissor);
-        //Scissor2.setText("jLabel7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -417,15 +386,16 @@ public class Game extends javax.swing.JPanel {
                             .addComponent(Paper2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void JTimerComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_JTimerComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTimerComponentAdded
+    private void JTimerComponentAdded(java.awt.event.ContainerEvent evt) {
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         returnMainMenu();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
+
+    //Ana mneüye çıkar
     private void returnMainMenu() {
         mainScreen.invalidate();
         mainScreen.setContentPane(mainScreen.getMainMenu());
@@ -435,6 +405,7 @@ public class Game extends javax.swing.JPanel {
         mainScreen.getMainMenu().setBackgroundMusic();
     }
 
+    //Taş Kağıt Makas'ı işler
     private int rockPaperScissorsResult(int p1, int p2) {
         if (p1 == p2) {
             return 0;
@@ -449,7 +420,6 @@ public class Game extends javax.swing.JPanel {
         }
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JTimer;
     private javax.swing.JLabel Paper1;
     private javax.swing.JLabel Paper2;
@@ -469,5 +439,4 @@ public class Game extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
 }

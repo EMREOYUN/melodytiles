@@ -1,4 +1,3 @@
-
 package melodytiles2;
 
 import java.io.IOException;
@@ -8,21 +7,14 @@ import javax.sound.sampled.LineUnavailableException;
 
 public class Options extends javax.swing.JPanel {
     private MainScreen mainScreen ;
-
-    /**
-     * Creates new form Options
-     */
     public Options(MainScreen mainScreen) {
         initComponents();
         this.mainScreen = mainScreen;
 
     }
 
-  
-    //@SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    //Componentleri dizer
     private void initComponents() {
-
         jTextField1 = new javax.swing.JTextField();
         MusicSlider = new javax.swing.JSlider();
         MuteSounds = new javax.swing.JCheckBox();
@@ -104,13 +96,12 @@ public class Options extends javax.swing.JPanel {
                 .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    private void MusicSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MusicSliderStateChanged
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+    }
+
+    private void MusicSliderStateChanged(javax.swing.event.ChangeEvent evt) {
         try {
             mainScreen.getMainMenu().ChangeVolumeMusic(MusicSlider.getValue());
             mainScreen.getMainMenu().setVolumeOfMusic(MusicSlider.getValue());
@@ -119,17 +110,12 @@ public class Options extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(Options.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+    }
 
-        
-    }//GEN-LAST:event_MusicSliderStateChanged
+    private void MuteSoundsActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
-    private void MuteSoundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MuteSoundsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MuteSoundsActionPerformed
-
-    private void BackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMouseClicked
-        // TODO add your handling code here:
+    private void BackButtonMouseClicked(java.awt.event.MouseEvent evt) {
         if(MuteSounds.isSelected()){
             mainScreen.getMainMenu().setIsOpen(false);
         } else {
@@ -139,18 +125,13 @@ public class Options extends javax.swing.JPanel {
         mainScreen.invalidate();
         mainScreen.validate();
         mainScreen.getMainMenu().setBackgroundMusic();
-    }//GEN-LAST:event_BackButtonMouseClicked
+    }
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        // TODO add your handling code here:
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
-    }//GEN-LAST:event_BackButtonActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JSlider MusicSlider;
     private javax.swing.JCheckBox MuteSounds;
     private javax.swing.JTextField jTextField1;
-    // End of variables declaration//GEN-END:variables
 }
