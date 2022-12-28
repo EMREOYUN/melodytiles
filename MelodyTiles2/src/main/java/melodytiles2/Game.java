@@ -7,10 +7,10 @@ import java.text.DecimalFormat;
 import javax.swing.*;
 
 public class Game extends javax.swing.JPanel {
-    private MainScreen mainScreen ;
+    private MainScreen mainScreen;
     private Timer timer;
     private Timer tick;
-    private DecimalFormat dFormat ;
+    private DecimalFormat dFormat;
     private int second, minute;
     private String ddSecond, ddMinute;
     private ImageIcon Rock;

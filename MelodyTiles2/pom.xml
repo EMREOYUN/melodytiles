@@ -11,4 +11,34 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>com.mycompany.melodytiles2.MelodyTiles2</exec.mainClass>
     </properties>
+    <build>
+        <resources>
+            <resource>
+                <directory></directory>
+                <includes>
+                    <include>**/*.wav</include>
+                    <include>**/*.png</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.mid</include>
+                </includes>
+            </resource>
+        </resources> 
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.mycompany.melodytiles2.MelodyTiles2</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
