@@ -16,10 +16,10 @@
             <resource>
                 <directory></directory>
                 <includes>
-                    <include>**/*.wav</include>
-                    <include>**/*.png</include>
-                    <include>**/*.jpg</include>
-                    <include>**/*.mid</include>
+                    <include>*.wav</include>
+                    <include>*.png</include>
+                    <include>*.jpg</include>
+                    <include>*.mid</include>
                 </includes>
             </resource>
         </resources> 
